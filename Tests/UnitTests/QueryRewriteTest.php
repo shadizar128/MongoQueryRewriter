@@ -1,7 +1,7 @@
 <?php
 use Lib\Mongo\QueryRewrite\CollisionHandler;
 use Lib\Mongo\QueryRewrite\QueryRewrite;
-
+use MongoDB\BSON\ObjectID;
 
 /**
  * @backupGlobals disabled
@@ -322,10 +322,10 @@ class QueryRewriteTest  extends \PHPUnit_Framework_TestCase {
 
         $options = array('onFailure' => QueryRewrite::ON_FAILURE_RETURN_IMPOSSIBLE_QUERY);
         $result = $this->_queryRewrite->rewrite(array(
-            'a' => new \MongoId("563cb7c9b1a43d7c51f05d15")
+            'a' => new ObjectID("563cb7c9b1a43d7c51f05d15")
         ), $options);
 
-        $this->assertEquals($result, array('a' => new \MongoId("563cb7c9b1a43d7c51f05d15")));
+        $this->assertEquals($result, array('a' => new ObjectID("563cb7c9b1a43d7c51f05d15")));
 
     }
 

@@ -1,5 +1,7 @@
 <?php
 use Lib\Mongo\QueryRewrite\CollisionHandler;
+use MongoDB\BSON\ObjectID;
+use MongoDB\BSON\UTCDateTime;
 
 /**
  * @backupGlobals disabled
@@ -40,8 +42,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_3() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$gte' => 6, '$lte' => 5),
             array()
@@ -60,8 +62,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_5() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$gt' => 5, '$lte' => 5),
             array()
@@ -70,8 +72,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_6() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$gt' => 6, '$lte' => 5),
             array()
@@ -90,8 +92,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_8() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$gt' => 5, '$lt' => 5),
             array()
@@ -100,8 +102,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_9() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$gt' => 6, '$lt' => 5),
             array()
@@ -120,8 +122,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_11() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$gte' => 5, '$lt' => 5),
             array()
@@ -130,8 +132,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_12() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$gte' => 6, '$lt' => 5),
             array()
@@ -150,8 +152,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_14() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$gte' => 5, '$in' => [1, 2, 3, 4]),
             array()
@@ -190,8 +192,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_18() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$gt' => 5, '$in' => [1, 2, 3, 4]),
             array()
@@ -200,8 +202,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_19() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$gt' => 5, '$in' => [1, 2, 3, 4, 5]),
             array()
@@ -260,8 +262,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_25() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$lte' => 5, '$in' => [6, 7]),
             array()
@@ -300,8 +302,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_29() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$lt' => 5, '$in' => [6, 7]),
             array()
@@ -470,8 +472,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     }
     public function test_46() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
             array('$in' => [1, 2], '$nin' => [1, 2]),
             array()
@@ -491,7 +493,7 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
 
     public function test_48() {
 
-        $value = new \MongoDate(time(), 0);
+        $value = new UTCDateTime (time());
         $result = $this->_collisionHandler->handleFieldCollision(
             $value,
             $value
@@ -503,11 +505,11 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
 
     public function test_49() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Invalid condition');
         $this->_collisionHandler->handleFieldCollision(
-            new \MongoDate(10000001, 0),
-            new \MongoDate(10000000, 0)
+            new UTCDateTime(10000001),
+            new UTCDateTime(10000000)
         );
 
     }
@@ -515,21 +517,21 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     public function test_50() {
 
         $result = $this->_collisionHandler->handleFieldCollision(
-            new \MongoId("563cb7c9b1a43d7c51f05d15"),
-            new \MongoId('563cb7c9b1a43d7c51f05d15')
+            new ObjectID("563cb7c9b1a43d7c51f05d15"),
+            new ObjectID('563cb7c9b1a43d7c51f05d15')
         );
 
-        $this->assertEquals($result, new \MongoId('563cb7c9b1a43d7c51f05d15'));
+        $this->assertEquals($result, new ObjectID('563cb7c9b1a43d7c51f05d15'));
 
     }
 
     public function test_51() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Field cannot have two values at once');
         $this->_collisionHandler->handleFieldCollision(
-            new \MongoId('563cb7c9b1a43d7c51f05d15'),
-            new \MongoId('563cb7c9b1a43d7c51f05d16')
+            new ObjectID('563cb7c9b1a43d7c51f05d15'),
+            new ObjectID('563cb7c9b1a43d7c51f05d16')
         );
 
     }
@@ -548,8 +550,8 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
 
     public function test_53() {
 
-        $this->expectException('Exceptions\QueryRewriteException');
-        $this->expectExceptionMessage('Could not rewrite query');
+        $this->expectException('Lib\Mongo\QueryRewrite\Exceptions\QueryRewriteException');
+        $this->expectExceptionMessage('Field cannot have two values at once');
 
         $value1 = 3;
         $value2 = 4;
@@ -563,22 +565,22 @@ class CollisionHandlerTest extends PHPUnit_Framework_TestCase {
     public function test_54() {
 
         $result = $this->_collisionHandler->handleFieldCollision(
-            array('$gt' => new \MongoDate(10000000, 0)),
-            array('$gt' => new \MongoDate(10000001, 0))
+            array('$gt' => new UTCDateTime (10000000)),
+            array('$gt' => new UTCDateTime (10000001))
         );
 
-        $this->assertEquals($result, array('$gt' => new \MongoDate(10000001, 0)));
+        $this->assertEquals($result, array('$gt' => new UTCDateTime (10000001)));
 
     }
 
     public function test_55() {
 
         $result = $this->_collisionHandler->handleFieldCollision(
-            array('$gt' => new \MongoDate(10000001, 0)),
-            array('$gt' => new \MongoDate(10000000, 0))
+            array('$gt' => new UTCDateTime (10000001)),
+            array('$gt' => new UTCDateTime (10000000))
         );
 
-        $this->assertEquals($result, array('$gt' => new \MongoDate(10000001, 0)));
+        $this->assertEquals($result, array('$gt' => new UTCDateTime (10000001)));
 
     }
 
